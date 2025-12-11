@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- TITLE SEO -->
+  <title>Inmobiliaria en Puerto Montt | UV Asesorías & Gestión Inmobiliaria</title>
+  <!-- DESCRIPTION SEO -->
+  <meta name="description" content="Inmobiliaria en Puerto Montt especializada en compra, venta, arriendo y administración de propiedades. Casas, parcelas y departamentos con asesoría experta y acompañamiento personalizado.">
+  <!-- KEYWORDS (no usadas por Google, pero sí por Bing/Yandex) -->
+  <meta name="keywords" content="inmobiliaria Puerto Montt, corredores de propiedades, casas en venta Puerto Montt, parcelas Puerto Varas, propiedades Los Lagos, arriendo Puerto Montt, gestión inmobiliaria">
+
+  <!-- CANONICAL -->
+  <link rel="canonical" href="https://uvasesoriasinmobiliarias.com/" />
+
+  <!-- OPEN GRAPH -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="UV Asesorías & Gestión Inmobiliaria — Propiedades en Puerto Montt">
+  <meta property="og:description" content="Compra, venta y administración de propiedades en Puerto Montt y alrededores. Asesoría profesional y acompañamiento experto.">
+  <meta property="og:image" content="https://uvasesoriasinmobiliarias.com/img/preview.jpg">
+  <meta property="og:url" content="https://uvasesoriasinmobiliarias.com/">
+  <meta property="og:site_name" content="UV Asesorías & Gestión Inmobiliaria">
+  <meta property="og:locale" content="es_CL">
+
+  <!-- TWITTER CARD -->
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- PRECONNECT PARA MAYOR RENDIMIENTO -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- FUENTE -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- TAILWIND -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- CONFIG TAILWIND -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1D4ED8',
+            secondary: '#0EA5E9',
+            accent: '#F97316',
+            lightbg: '#F9FAFB',
+            darktext: '#0F172A'
+          },
+          fontFamily: {
+            sans: ['Poppins', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- SCHEMA.ORG / SEO LOCAL -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "RealEstateAgent",
+    "name": "UV Asesorías & Gestión Inmobiliaria",
+    "image": "https://uvasesoriasinmobiliarias.com/img/logo.png",
+    "@id": "https://uvasesoriasinmobiliarias.com/#agente",
+    "url": "https://uvasesoriasinmobiliarias.com/",
+    "telephone": "+56965591700",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Puerto Montt",
+      "addressRegion": "Los Lagos",
+      "addressCountry": "CL"
+    },
+    "areaServed": [
+      "Puerto Montt",
+      "Puerto Varas",
+      "Alerce",
+      "Llanquihue",
+      "Región de Los Lagos"
+    ],
+    "description": "Expertos en compra, venta, arriendo y administración de propiedades en Puerto Montt y alrededores.",
+    "openingHours": "Mo-Fr 09:00-18:30",
+    "email": "contacto@uvasesoriasinmobiliarias.com"
+  }
+  </script>
+</head>
+<body class="font-sans text-darktext bg-white">
+ <header id="main-header" class="bg-white sticky top-0 z-50 w-full shadow-md">
+    <div class="max-w-5xl mx-auto px-4 lg:px-0">
+      <div class="flex items-center justify-between py-4 ">       
+       <div class="w-20 h-15 flex items-center justify-center">
+        <img src="img/logo.png" alt="UV Asesorías Logo" class="w-full h-full object-contain">
+         </div>
+          <div>
+            <p class="font-semibold text-sm md:text-base tracking-wide text-slate-900">UV Asesorías</p>
+            <p class="text-[11px] md:text-xs text-slate-500">Gestión Inmobiliaria & Inversiones</p>
+          </div>
+
+          <!--MENU NAV-->
+        <nav class="hidden md:flex gap-6 text-slate-600 font-medium">
+          <a href="#propiedades" class="hover:text-primary transition-colors">Propiedades</a>
+          <a href="#servicios" class="hover:text-primary transition-colors">Servicios</a>
+          <a href="#nosotros" class="hover:text-primary transition-colors">Nosotros</a>
+          <a href="#testimonios" class="hover:text-primary transition-colors">Testimonios</a>
+          <a href="#contacto" class="hover:text-primary transition-colors">Contacto</a>
+        </nav>
+     <div class="flex items-center gap-3">
+          <a href="https://wa.me/56965591700?text=Hola,%20quiero%20más%20información" target="_blank" class="hidden md:inline-flex bg-accent text-white text-sm font-medium px-4 py-2 rounded-full shadow-md hover:bg-opacity-90 transition">
+            Agenda tu asesoría
+          </a>
+          <button id="mobile-menu-button" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-50">
+            <span class="sr-only">Abrir menú</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!--MENU MOVIL-->
+      <div id="mobile-menu" class="hidden md:hidden pb-4 bg-white border-t border-slate-100">
+        <nav class="flex flex-col gap-2 text-sm pt-2 text-slate-700">
+          <a href="#propiedades" class="block py-2 px-2 hover:bg-slate-50 rounded">Propiedades</a>
+          <a href="#servicios" class="block py-2 px-2 hover:bg-slate-50 rounded">Servicios</a>
+          <a href="#nosotros" class="block py-2 px-2 hover:bg-slate-50 rounded">Nosotros</a>
+          <a href="#testimonios" class="block py-2 px-2 hover:bg-slate-50 rounded">Testimonios</a>
+          <a href="#contacto" class="block py-2 px-2 font-semibold text-primary">Contacto</a>
+        </nav>
+      </div>
+    </div>
+</header>
+  <!-- HERO -->
+  <section id="inicio" class="hero-bg pt-28 pb-24 md:pt-32 md:pb-32">
+    <div class="max-w-6xl mx-auto px-4 lg:px-0">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div class="text-white hero-fade-in">
+          <p class="uppercase text-xs tracking-[0.3em] text-sky-200 mb-3">Gestión inmobiliaria integral</p>
+          <h1 class="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight mb-4">
+            Invertir en propiedad nunca fue tan simple.
+          </h1>
+          <p class="text-sm md:text-base text-sky-200 mb-6">
+            En <span class="font-semibold">UV Asesorías & Gestión Inmobiliaria</span> te acompañamos en todo el ciclo:
+            compra, venta, arriendo y administración de propiedades, con enfoque en
+            rentabilidad, seguridad y tranquilidad para ti.
+          </p>
+          <!-- MINI BADGES -->
+          <div class="flex flex-wrap gap-3 mb-6 text-[11px] md:text-xs">
+            <span class="px-3 py-1 rounded-full bg-white/30 border border-sky-200/10 backdrop-blur">
+              +10 años de experiencia
+            </span>
+            <span class="px-3 py-1 rounded-full bg-white/30 border border-sky-200/40 backdrop-blur">
+              Enfoque en inversionistas
+            </span>
+            <span class="px-3 py-1 rounded-full bg-white/30 border border-sky-200/40 backdrop-blur">
+              Asesoría personalizada
+            </span>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 mb-8">
+            <a href="#propiedades" class="btn-cta inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-accent text-sm font-semibold shadow-lg hover:shadow-xl" >
+              Ver propiedades disponibles
+            </a>
+          </div>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-3 text-xs md:text-sm">
+            <div>
+              <p class="font-semibold text-lg md:text-xl text-sky-100">+150</p>
+              <p class="text-sky-100">Propiedades asesoradas</p>
+            </div>
+            <div>
+              <p class="font-semibold text-lg md:text-xl text-sky-100">+95%</p>
+              <p class="text-sky-100">Clientes satisfechos</p>
+            </div>
+            <div>
+              <p class="font-semibold text-lg md:text-xl text-sky-100">+12%</p>
+              <p class="text-sky-100">Rentabilidad promedio</p>
+            </div>
+          </div>
+        </div>
+         <div class="bg-white/95 rounded-3xl shadow-2xl p-6 md:p-8 backdrop-blur hero-fade-in" style="animation-delay: 0.4s;">
+  <h2 class="text-xl md:text-2xl font-semibold text-slate-800 mb-3">
+    Déjanos encontrar la propiedad ideal para ti
+  </h2>
+  <p class="text-sm text-slate-500 mb-6 leading-relaxed">
+    Analizamos tu caso, presupuesto, ubicación deseada y objetivos. 
+    Un asesor especializado se pondrá en contacto contigo en menos de 24 horas. 
+    Este servicio es gratuito y sin compromiso.
+  </p>
+  <a 
+    a href="https://wa.me/56965591700?text=Hola,%20solicito%20una%20asesoria" target="_blank"
+    class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-primary text-white text-sm md:text-base font-semibold shadow-md hover:shadow-lg transition">
+      Solicitar asesoría personalizada
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+      </svg>
+      </a>
+  <p class="text-[11px] text-slate-400 mt-3 text-center">
+    Es gratis — te contactaremos por WhatsApp o correo.
+  </p>
+</div>
+    </div>
+  </section>
+
+  <!-- PORTAFOLIO DE PROPIEDADES -->
+ <section class="py-16 md:py-20" id="propiedades">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+        <div>
+          <p class="text-xs uppercase tracking-[0.25em] text-blue-600 mb-2" >Portafolio</p>
+          <h2 class="text-2xl md:text-3xl font-semibold mb-2">Propiedades destacadas</h2>
+          <p class="text-sm text-slate-500 max-w-xl">
+            Selección curada de oportunidades para vivir, invertir o arrendar. Filtra desde el buscador superior
+            para ajustar la oferta a tu perfil.
+          </p>
+        </div>
+        <a href="https://wa.me/56965591700?text=Hola,%20quiero%20más%20información" class="inline-flex items-center text-xs md:text-sm font-medium text-blue-600 hover:text-amber-600">
+          Quiero que revisen mi propiedad
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+         </div>
+        <div id="propertiesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+        <!-- CARGA DINAMICA DE PROPIEDADES DESDE GALERIA_FIREBASE-->
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SERVICIOS -->
+  <section id="servicios" class="py-16 md:py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 lg:px-0">
+      <div class="text-center mb-10 js-fade">
+        <p class="text-xs uppercase tracking-[0.25em] text-primary mb-2">Servicios</p>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-3">Asesoría integral para cada etapa</h2>
+        <p class="text-sm text-slate-500 max-w-2xl mx-auto">
+          Más que corredora de propiedades, somos tu equipo estratégico para construir un patrimonio sólido y sostenible
+          en el tiempo.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Servicio 1 -->
+        <div class="bg-lightbg rounded-3xl p-5 md:p-6 js-fade">
+          <div class="w-10 h-10 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M3 10l9-7 9 7v10a1 1 0 01-1 1h-5m-6 0H4a1 1 0 01-1-1V10" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M9 21v-6h6v6" />
+            </svg>
+          </div>
+          <h3 class="font-semibold mb-2 text-sm md:text-base">Compra inteligente</h3>
+          <p class="text-xs text-slate-500 mb-3">
+            Te ayudamos a analizar proyectos, revisar condiciones comerciales y proyectar rentabilidades para maximizar
+            tu inversión.
+          </p>
+          <ul class="text-xs text-slate-500 space-y-1 mb-4">
+            <li>• Análisis de plusvalía y entorno</li>
+            <li>• Comparativo con propiedades similares</li>
+            <li>• Acompañamiento en firma de promesa y escritura</li>
+          </ul>
+          <a href="#contacto" class="text-xs font-semibold text-primary hover:text-secondary inline-flex items-center">
+            Quiero asesoría para comprar
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Servicio 2 -->
+        <div class="bg-lightbg rounded-3xl p-5 md:p-6 js-fade">
+          <div class="w-10 h-10 rounded-2xl bg-secondary/10 flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M4 6h16M4 10h16M4 14h10M4 18h6" />
+            </svg>
+          </div>
+          <h3 class="font-semibold mb-2 text-sm md:text-base">Venta estratégica</h3>
+          <p class="text-xs text-slate-500 mb-3">
+            Potenciamos tu propiedad para lograr el mejor precio en el menor tiempo, con un plan de marketing a tu medida.
+          </p>
+          <ul class="text-xs text-slate-500 space-y-1 mb-4">
+            <li>• Reportes de mercado y precio recomendado</li>
+            <li>• Fotografía profesional y tour virtual</li>
+            <li>• Publicación en portales y redes segmentadas</li>
+          </ul>
+          <a href="#contacto" class="text-xs font-semibold text-primary hover:text-secondary inline-flex items-center">
+            Solicitar evaluación sin costo
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Servicio 3 -->
+        <div class="bg-lightbg rounded-3xl p-5 md:p-6 js-fade">
+          <div class="w-10 h-10 rounded-2xl bg-accent/10 flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M3 5h6l2 5h10l-2 6H9l-2-5H3z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M16 19a2 2 0 100 4 2 2 0 000-4zM8 19a2 2 0 100 4 2 2 0 000-4z" />
+            </svg>
+          </div>
+          <h3 class="font-semibold mb-2 text-sm md:text-base">Administración y arriendo</h3>
+          <p class="text-xs text-slate-500 mb-3">
+            Gestionamos tu propiedad como si fuera nuestra, para que tú recibas tu renta sin preocuparte de nada.
+          </p>
+          <ul class="text-xs text-slate-500 space-y-1 mb-4">
+            <li>• Selección y evaluación de arrendatarios</li>
+            <li>• Cobranza, contratos y reajustes</li>
+            <li>• Coordinación de mantenciones y devoluciones</li>
+          </ul>
+          <a href="#contacto" class="text-xs font-semibold text-primary hover:text-secondary inline-flex items-center">
+            Cotizar administración
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section id="nosotros" class="py-16 md:py-20 bg-lightbg">
+    <div class="max-w-6xl mx-auto px-4 lg:px-0 grid md:grid-cols-2 gap-10 items-center">
+      <div class="js-fade">
+        <div class="relative rounded-3xl overflow-hidden shadow-xl">
+          <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=80"
+               alt="Equipo de asesores inmobiliarios UV"
+               class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-tr from-primary/30 via-transparent to-secondary/40"></div>
+          <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+            <div class="bg-white/90 rounded-2xl px-3 py-2 text-[11px] shadow">
+              <p class="font-semibold text-slate-800">Equipo UV</p>
+              <p class="text-slate-500">Asesores especializados en inversión residencial y comercial.</p>
+            </div>
+            <div class="bg-primary text-white rounded-full px-3 py-2 text-[11px] shadow">
+              +10 años en el mercado
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="js-fade">
+        <p class="text-xs uppercase tracking-[0.25em] text-primary mb-2">Nosotros</p>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-3">Asesoría cercana, decisiones estratégicas</h2>
+        <p class="text-sm text-slate-600 mb-3">
+          UV Asesorías & Gestión Inmobiliaria nace con el propósito de acompañar a personas e
+          inversionistas que buscan construir patrimonio con seguridad, claridad y datos reales.
+        </p>
+        <p class="text-sm text-slate-600 mb-4">
+          Combinamos experiencia en mercado inmobiliario, análisis financiero y marketing digital para diseñar
+          estrategias a la medida de cada cliente.
+        </p>
+
+        <!-- Puntos -->
+        <div class="grid grid-cols-2 gap-4 mb-5 text-xs">
+          <div class="flex items-start gap-2">
+            <span class="mt-[2px]">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M5 13l4 4L19 7" />
+              </svg>
+            </span>
+            <div>
+              <p class="font-semibold mb-0.5">Transparencia total</p>
+              <p class="text-slate-500">Informes claros, sin letra chica ni decisiones a oscuras.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="mt-[2px]">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M5 13l4 4L19 7" />
+              </svg>
+            </span>
+            <div>
+              <p class="font-semibold mb-0.5">Acompañamiento real</p>
+              <p class="text-slate-500">Estamos contigo antes, durante y después de la firma.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="mt-[2px]">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M5 13l4 4L19 7" />
+              </svg>
+            </span>
+            <div>
+              <p class="font-semibold mb-0.5">Visión a largo plazo</p>
+              <p class="text-slate-500">Estrategia de portafolio, no solo una operación puntual.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-2">
+            <span class="mt-[2px]">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M5 13l4 4L19 7" />
+              </svg>
+            </span>
+            <div>
+              <p class="font-semibold mb-0.5">Red de aliados</p>
+              <p class="text-slate-500">Bancos, notarías, tasadores y estudios jurídicos confiables.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          <a href="https://wa.me/56965591700?text=Hola,%20quiero%20más%20información" class="btn-cta inline-flex items-center justify-center px-4 py-2.5 rounded-full bg-primary text-white text-xs md:text-sm font-medium shadow-md hover:shadow-lg">
+            Agenda una reunión introductoria
+          </a>
+          <a href="#testimonios" class="inline-flex items-center text-xs md:text-sm font-medium text-primary hover:text-secondary">
+            Ver experiencias de clientes
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 lg:px-0 js-fade">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+        <div>
+          <p class="text-xs uppercase tracking-[0.25em] text-primary mb-2">Cómo trabajamos</p>
+          <h2 class="text-2xl md:text-3xl font-semibold mb-2">Un proceso claro y acompañad@ en todo momento</h2>
+        </div>
+        <p class="text-sm text-slate-500 max-w-md">
+          Desde la primera llamada hasta la administración de tu propiedad, tendrás un equipo dedicado
+          y un plan paso a paso.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-4 gap-4 md:gap-5 text-xs">
+        <div class="bg-lightbg rounded-3xl p-4 md:p-5 js-fade">
+          <p class="text-[11px] font-semibold text-primary mb-1">Paso 1</p>
+          <h3 class="font-semibold mb-1">Diagnóstico y objetivos</h3>
+          <p class="text-slate-500">
+            Revisamos tu situación financiera, horizonte de inversión y expectativas de renta o plusvalía.
+          </p>
+        </div>
+        <div class="bg-lightbg rounded-3xl p-4 md:p-5 js-fade">
+          <p class="text-[11px] font-semibold text-primary mb-1">Paso 2</p>
+          <h3 class="font-semibold mb-1">Búsqueda y análisis</h3>
+          <p class="text-slate-500">
+            Curamos alternativas y te presentamos reportes comparativos con recomendaciones claras.
+          </p>
+        </div>
+        <div class="bg-lightbg rounded-3xl p-4 md:p-5 js-fade">
+          <p class="text-[11px] font-semibold text-primary mb-1">Paso 3</p>
+          <h3 class="font-semibold mb-1">Cierre seguro</h3>
+          <p class="text-slate-500">
+            Te acompañamos en la negociación, firma de documentos y coordinación con entidades financieras.
+          </p>
+        </div>
+        <div class="bg-lightbg rounded-3xl p-4 md:p-5 js-fade">
+          <p class="text-[11px] font-semibold text-primary mb-1">Paso 4</p>
+          <h3 class="font-semibold mb-1">Gestión y seguimiento</h3>
+          <p class="text-slate-500">
+            Si lo deseas, administramos tu propiedad, buscamos arrendatarios y te entregamos reportes periódicos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS DE CLIENTES -->
+  <section id="testimonios" class="py-16 md:py-20 bg-lightbg">
+    <div class="max-w-6xl mx-auto px-4 lg:px-0">
+      <div class="text-center mb-10 js-fade">
+        <p class="text-xs uppercase tracking-[0.25em] text-primary mb-2">Testimonios</p>
+        <h2 class="text-2xl md:text-3xl font-semibold mb-3">Clientes que ya confían en UV</h2>
+        <p class="text-sm text-slate-500 max-w-2xl mx-auto">
+          Historias reales de personas que decidieron invertir y gestionar sus propiedades con acompañamiento profesional.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Testimonio 1 -->
+        <div class="bg-white rounded-3xl p-5 shadow-sm js-fade">
+          <p class="text-xs text-slate-500 mb-3">
+            “Nunca había invertido en departamentos, y el equipo de UV me explicó todo con paciencia. Hoy tengo dos
+            propiedades arrendadas y claridad sobre mis números.”
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xs font-semibold no-select">
+              MS
+            </div>
+            <div>
+              <p class="text-sm font-semibold">María Soledad</p>
+              <p class="text-[11px] text-slate-400">Inversionista, Santiago</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonio 2 -->
+        <div class="bg-white rounded-3xl p-5 shadow-sm js-fade">
+          <p class="text-xs text-slate-500 mb-3">
+            “Vivimos en región y necesitábamos alguien que administrara nuestro departamento en Santiago.
+            Recibimos reportes mensuales y todo se gestiona a distancia sin problemas.”
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-secondary/10 flex items-center justify-center text-secondary text-xs font-semibold no-select">
+              PJ
+            </div>
+            <div>
+              <p class="text-sm font-semibold">Pablo & Javiera</p>
+              <p class="text-[11px] text-slate-400">Arrendadores, Valdivia</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonio 3 -->
+        <div class="bg-white rounded-3xl p-5 shadow-sm js-fade">
+          <p class="text-xs text-slate-500 mb-3">
+            “Lo que más valoré fue la honestidad con la que me mostraron opciones. No empujan a cerrar por cerrar, sino a
+            tomar buenas decisiones.”
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-accent/10 flex items-center justify-center text-accent text-xs font-semibold no-select">
+              LC
+            </div>
+            <div>
+              <p class="text-sm font-semibold">Lorena Campos</p>
+              <p class="text-[11px] text-slate-400">Profesional independiente</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CONTACTO-->
+  <section id="contacto" class="py-16 md:py-20 bg-lightbg">
+  <div class="max-w-6xl mx-auto px-4 lg:px-0 grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+    <!-- FORMULARIO -->
+    <div class="js-fade">
+      <p class="text-xs uppercase tracking-[0.25em] text-primary mb-2">Contacto</p>
+
+      <h2 class="text-2xl md:text-3xl font-semibold mb-3">
+        Conversemos sobre tu próxima decisión inmobiliaria
+      </h2>
+
+      <p class="text-sm text-slate-600 mb-5">
+        Déjanos tus datos y un asesor de UV se pondrá en contacto contigo para agendar una reunión remota o presencial.
+      </p>
+
+      <form id="contact-form" class="bg-white rounded-3xl p-5 md:p-6 shadow-sm space-y-4">
+        
+        <!-- Nombre + Teléfono -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-medium text-slate-600 mb-1" for="nombre">Nombre</label>
+            <input id="nombre" required type="text" placeholder="Tu nombre completo"
+              class="w-full text-xs md:text-sm px-3 py-2 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary/60" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-slate-600 mb-1" for="telefono">Teléfono / WhatsApp</label>
+            <input id="telefono" required type="tel" placeholder="+56 9 ..."
+              class="w-full text-xs md:text-sm px-3 py-2 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary/60" />
+          </div>
+        </div>
+
+        <!-- Email + Tipo -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-medium text-slate-600 mb-1" for="email">Correo electrónico</label>
+            <input id="email" required type="email" placeholder="tu@correo.com"
+              class="w-full text-xs md:text-sm px-3 py-2 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary/60" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-slate-600 mb-1" for="tipo-consulta">¿Qué necesitas?</label>
+            <select id="tipo-consulta"
+              class="w-full text-xs md:text-sm px-3 py-2 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary/60">
+              <option value="compra">Comprar</option>
+              <option value="venta">Vender</option>
+              <option value="arriendo">Arrendar / Administrar</option>
+              <option value="inversion">Asesoría de inversión</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Mensaje -->
+        <div>
+          <label class="block text-xs font-medium text-slate-600 mb-1" for="mensaje">Cuéntanos brevemente</label>
+          <textarea id="mensaje" rows="4" placeholder="Ej: Tengo un departamento en Ñuñoa..."
+            class="w-full text-xs md:text-sm px-3 py-2 rounded-xl border border-slate-200 focus:ring-2 focus:ring-primary/60"></textarea>
+        </div>
+
+        <!-- Botón -->
+        <button type="submit"
+          class="w-full inline-flex items-center justify-center gap-2 bg-primary text-white text-sm font-medium px-4 py-3 rounded-xl shadow-md hover:shadow-lg">
+          Enviar consulta
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M3 10l9-7 9 7-9 4-9-4v11" />
+          </svg>
+        </button>
+
+        <p class="text-[11px] text-slate-400">
+          Al enviar este formulario, autorizas a UV Asesorías a contactarte. Tus datos no se compartirán.
+        </p>
+      </form>
+    </div>
+
+    <!-- INFO + MAPA -->
+    <div class="space-y-5 js-fade">
+
+      <!-- DATOS -->
+      <div class="bg-white rounded-3xl p-5 shadow-sm">
+        <h3 class="font-semibold text-sm md:text-base mb-3">Datos de contacto</h3>
+        <div class="space-y-2 text-xs text-slate-600">
+          <p><span class="font-semibold">Correo:</span> contacto@uvasesoriasinmobiliarias.com</p>
+          <p><span class="font-semibold">Teléfono / WhatsApp:</span> +56 9 6559 1700 , +56 9 3668 5306</p>
+          <p><span class="font-semibold">Horario:</span> Lunes a viernes de 9:00 a 18:30 hrs</p>
+          <p><span class="font-semibold">Ubicación:</span> Puerto Montt, Chile</p>
+        </div>
+      </div>
+
+      <!-- MAPA RESPONSIVO -->
+      <div class="js-fade">
+        <div class="rounded-3xl overflow-hidden shadow-sm h-64 md:h-72 w-full mb-4">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31518.577979265556!2d-72.9686605387699!3d-41.462983754896044!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x96183a4d6920f407%3A0x86a3f15a79a5c9df!2sPuerto%20Montt!5e1!3m2!1ses-419!2scl!4v1762275470148!5m2!1ses-419!2scl" 
+            class="w-full h-full"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <div class="bg-white rounded-3xl p-4 shadow-sm text-xs text-slate-600">
+          <p class="font-semibold mb-1">Atención remota y presencial</p>
+          <p>Reuniones por videollamada o presenciales según disponibilidad.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+ <!--FOOTER-->
+<footer class="bg-slate-950 text-slate-200 pt-10 pb-6">
+  <div class="max-w-6xl mx-auto px-4 lg:px-0">
+    <div class="grid md:grid-cols-4 gap-8 mb-8 text-xs">
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <div class="w-20 h-20 flex items-center justify-center text-white">
+            <img src="img/logo.png" alt="UV Asesorías Logo" class="w-full h-full object-contain">
+          </div>
+        </div>
+        <p class="text-slate-400 text-[11px]">
+          UV Asesorías & Gestión Inmobiliaria - Tu socio estratégico en decisiones inmobiliarias inteligentes.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-sm mb-3">Servicios</h3>
+        <ul class="space-y-1 text-slate-400">
+          <li>Compra de propiedades</li>
+          <li>Venta y corretaje</li>
+          <li>Arriendo y administración</li>
+          <li>Asesoría a inversionistas</li>
+          <li>Estudios de mercado</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-3 border-t border-slate-800 pt-3 text-[11px] text-slate-500">
+      <p>© <span id="year"></span> UV Asesorías & Gestión Inmobiliaria. Sitio demostrativo.</p>
+      <div class="flex items-center gap-4">
+        <a href="#" class="hover:text-slate-300">Política de privacidad</a>
+        <a href="#" class="hover:text-slate-300">Términos y condiciones</a>
+      </div>
+    </div>
+  </div>
+  <!--PANEL DE ADMIN-->
+
+   <a id="adminLinkFooter"
+   href="paneldecontrol/index_usuario.html"
+   class="text-[10px] text-slate-900 hover:text-slate-500">
+  Acceso admin
+</a>
+</footer>
+
+     <!-- Botón flotante WhatsApp / -->
+    <button id="whatsapp-float"
+      class="fixed bottom-4 right-4 z-40 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-emerald-500 text-white text-xs font-medium shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12.04 2C6.57 2 2.25 6.32 2.25 11.79C2.25 13.89 2.95 15.87 4.22 17.49L3 22L7.64 20.81C9.2 21.77 11.04 22.29 12.9 22.29H12.91C18.38 22.29 22.7 17.97 22.7 12.5C22.7 7.03 17.51 2 12.04 2Z"/>
+      </svg>
+      Agenda por WhatsApp
+    </button>
+
+   <!-- Firebase Core -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBMkyYEFpp6-_tKcQnFGd-g3yBy00VpStU",
+    authDomain: "uv-inmobiliaria-1da32.firebaseapp.com",
+    projectId: "uv-inmobiliaria-1da32",
+    storageBucket: "uv-inmobiliaria-1da32.firebasestorage.app",
+    messagingSenderId: "479218790062",
+    appId: "1:479218790062:web:4a10f50e1fef9e3ed8873f"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  const storage = firebase.storage();
+</script>
+
+<!-- Galería -->
+<script src="paneldecontrol/galeria_firebase.js"></script>
+
+<!-- Scripts generales -->
+<script src="scripts.js" defer></script>
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("uu0i819hWi11XJoSn");
+  })();
+</script>
+
+<!-- Acceso admin seguro -->
+<script>
+  const adminLink = document.getElementById("adminLinkFooter");
+
+  if (adminLink) {
+    adminLink.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          window.location.href = "paneldecontrol/index_usuario.html";
+        } else {
+          window.location.href = "paneldecontrol/index.html";
+        }
+      });
+    });
+  }
+</script>
+
+  
+
+</body>
+</html>

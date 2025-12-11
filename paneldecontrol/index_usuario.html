@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Control - UV Asesorías</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1D4ED8',    
+            secondary: '#0EA5E9', 
+            accent: '#F97316',     
+            lightbg: '#F9FAFB',
+            darktext: '#0F172A'
+          },
+          fontFamily: {
+            sans: ['Poppins', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .sidebar {
+      transition: transform 0.3s ease;
+    }
+    
+    @media (max-width: 768px) {
+      .sidebar.hidden-mobile {
+        transform: translateX(-100%);
+      }
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      overflow-y: auto;
+    }
+    
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .image-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 10px;
+    }
+    
+    .image-preview-item {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid #e2e8f0;
+    }
+    
+    .image-preview-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .image-preview-item .remove-btn {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background: rgba(239, 68, 68, 0.9);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    
+    .loading {
+      pointer-events: none;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <!--LOGIN -->
+  <div id="loginScreen" class="min-h-screen flex items-center justify-center px-4">
+    <div class="max-w-md w-full bg-white rounded-3xl shadow-xl p-8">
+      <div class="text-center mb-8">
+        <div class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+        </div>
+        <h1 class="text-2xl font-bold text-gray-900 mb-2">Panel de Control</h1>
+        <p class="text-sm text-gray-500">UV Asesorías & Gestión Inmobiliaria</p>
+      </div>
+      
+      <form id="loginForm" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Correo electrónico</label>
+          <input type="email" id="loginEmail" required
+            class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent"
+            placeholder="tu@correo.com">
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
+          <input type="password" id="loginPassword" required
+            class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent"
+            placeholder="••••••••">
+        </div>
+        
+        <button type="submit" id="loginBtn"
+          class="w-full bg-primary text-white py-2.5 rounded-xl font-medium hover:bg-primary/90 transition">
+          Iniciar Sesión
+        </button>
+      </form>
+      
+      <div id="loginError" class="mt-4 hidden">
+        <div class="bg-red-50 text-red-600 px-4 py-3 rounded-xl text-sm"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- PANEL PRINCIPAL-->
+  <div id="panelScreen" class="hidden">
+    <!-- SIDEBAR -->
+    <aside class="sidebar fixed left-0 top-0 h-full w-64 bg-white border-r border-gray-200 z-40">
+      <div class="p-6 border-b border-gray-200">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+          </div>
+          <div>
+            <h2 class="font-semibold text-gray-900">UV Asesorías</h2>
+            <p class="text-xs text-gray-500">Panel Admin</p>
+          </div>
+        </div>
+      </div>
+      
+      <nav class="p-4">
+        <a href="#" data-section="propiedades" class="nav-link active flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-gray-50 mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+          <span class="font-medium">Mis Propiedades</span>
+        </a>
+        
+        <a href="#" data-section="configuracion" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-gray-700 hover:bg-gray-50 mb-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <span class="font-medium">Configuración</span>
+        </a>
+      </nav>
+      
+      <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+            <span class="text-sm font-semibold text-gray-600" id="userInitials">--</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-medium text-gray-900 truncate" id="userName">Usuario</p>
+            <p class="text-xs text-gray-500 truncate" id="userEmail">email@ejemplo.com</p>
+          </div>
+        </div>
+        <button id="logoutBtn" class="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded-xl transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          Cerrar Sesión
+        </button>
+      </div>
+    </aside>
+    <main class="ml-64 min-h-screen">
+      
+      <!-- HEADER -->
+      <header class="bg-white border-b border-gray-200 px-8 py-4 sticky top-0 z-30">
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-2xl font-bold text-gray-900" id="sectionTitle">Mis Propiedades</h1>
+            <p class="text-sm text-gray-500">Gestiona tus publicaciones inmobiliarias</p>
+          </div>
+          
+          <button id="btnNuevaPropiedad" class="flex items-center gap-2 px-4 py-2.5 bg-primary text-white rounded-xl font-medium hover:bg-primary/90 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            Nueva Propiedad
+          </button>
+        </div>
+      </header>
+      
+      <!-- Sección: Propiedades -->
+      <section id="seccionPropiedades" class="section-content p-8">
+        
+        <!-- Filtros -->
+        <div class="bg-white rounded-2xl shadow-sm p-6 mb-6">
+          <div class="grid md:grid-cols-4 gap-4">
+            <input type="text" id="filtroTitulo" placeholder="Buscar por título..."
+              class="px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent">
+            
+            <select id="filtroTipo" class="px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent">
+              <option value="">Todos los tipos</option>
+              <option value="terreno">Terreno</option>
+              <option value="parcela">Parcela</option>
+              <option value="departamento">Departamento</option>
+              <option value="casa">Casa</option>
+              <option value="habitacional">Habitacional</option>
+              <option value="local">Local comercial</option>
+              <option value="arriendo">arriendo</option>
+            </select>
+            
+            <select id="filtroEstado" class="px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent">
+              <option value="">Todos los estados</option>
+              <option value="disponible">Disponible</option>
+              <option value="vendido">Vendido</option>
+              <option value="arrendado">Arrendado</option>
+            </select>
+            
+            <button id="btnAplicarFiltros" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-xl font-medium hover:bg-gray-200 transition">
+              Aplicar Filtros
+            </button>
+          </div>
+        </div>
+        
+        <!-- Lista de propiedades -->
+        <div id="listaPropiedades" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        </div>
+      </section>
+
+      <section id="seccionConfiguracion" class="section-content hidden p-8">
+          <div class="bg-white rounded-2xl shadow-sm p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Mi Perfil</h3>
+            
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+                <input type="text" id="inputNombre"
+                  class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent">
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
+                <input type="tel" id="inputTelefono"
+                  class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent">
+              </div>
+              
+              <button id="btnActualizarPerfil" class="px-6 py-2.5 bg-primary text-white rounded-xl font-medium hover:bg-primary/90 transition">
+                Guardar Cambios
+              </button>
+            </div>
+          </div>
+        </div>    
+      </section>
+      
+    </main>    
+  </div>
+
+  <!-- Modal: Nueva/Editar Propiedad -->
+  <div id="modalPropiedad" class="modal">
+    <div class="bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+      <div class="sticky top-0 bg-white border-b border-gray-200 px-8 py-6 rounded-t-3xl">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-bold text-gray-900" id="modalTitulo">Nueva Propiedad</h2>
+          <button id="btnCerrarModal" class="text-gray-400 hover:text-gray-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <form id="formPropiedad" class="p-8 space-y-6">
+        
+        <!-- INFORMACION BASICA -->
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Información Básica</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-gray-700 mb-1">Título *</label>
+              <input type="text" name="titulo" required
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="Ej: Departamento en Puerto Montt Centro">
+            </div>
+            
+            <div class="md:col-span-2">
+              <label class="block text-sm font-medium text-gray-700 mb-1">Descripción *</label>
+              <textarea name="descripcion" rows="4" required
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="Describe la propiedad, sus características y ventajas..."></textarea>
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Tipo *</label>
+              <select name="tipo" required
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent">
+                <option value="">Seleccionar...</option>
+                <option value="">Todos los tipos</option>
+              <option value="terreno">Terreno</option>
+              <option value="parcela">Parcela</option>
+              <option value="departamento">Departamento</option>
+              <option value="casa">Casa</option>
+              <option value="habitacional">Habitacional</option>
+              <option value="local">Local comercial</option>
+              <option value="arriendo">arriendo</option>
+              </select>
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Estado *</label>
+              <select name="estado" required
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent">
+                <option value="disponible">Disponible</option>
+                <option value="vendido">Vendido</option>
+                <option value="arrendado">Arrendado</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <!-- UBICACION -->
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Ubicación</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Ciudad *</label>
+              <input type="text" name="ubicacion" required
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="Ej: Puerto Montt">
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Región</label>
+              <input type="text" name="region"
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="Ej: Los Lagos">
+            </div>
+          </div>
+        </div>
+        
+        <!-- CARACTERISTICAS-->
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Características</h3>
+          <div class="grid md:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Precio *</label>
+              <input type="number" name="precio_clp" step="0.01" required
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="$">
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Habitaciones</label>
+              <input type="number" name="habitaciones" min="0"
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="3">
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Baños</label>
+              <input type="number" name="banos" min="0"
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="2">
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Metros Cuadrados</label>
+              <input type="number" name="metros_cuadrados" min="0"
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent"
+                placeholder="85">
+            </div>
+            
+            <div class="flex items-center">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" name="destacado" class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary">
+                <span class="text-sm font-medium text-gray-700">Marcar como destacado</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Imágenes -->
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">Imágenes</h3>
+          <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center">
+            <input type="file" id="inputImagenes" multiple accept="image/*" class="hidden">
+            <label for="inputImagenes" class="cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-400 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+              </svg>
+              <p class="text-sm text-gray-600 mb-1">Click para subir imágenes</p>
+              <p class="text-xs text-gray-400">PNG, JPG hasta 5MB cada una</p>
+            </label>
+          </div>
+          
+          <div id="previewImagenes" class="image-preview-grid mt-4">
+            <!-- Preview de imágenes -->
+          </div>
+        </div>
+        
+        <input type="hidden" name="propiedad_id" id="propiedadId">
+        
+        <!-- BOTONES-->
+        <div class="flex gap-3 pt-4 border-t border-gray-200">
+          <button type="button" id="btnCancelar" class="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 transition">
+            Cancelar
+          </button>
+          <button type="submit" id="btnGuardar" class="flex-1 px-6 py-3 bg-primary text-white rounded-xl font-medium hover:bg-primary/90 transition">
+            Guardar Propiedad
+          </button>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+ <!--LOGICA DE FIREBASE-->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBMkyYEFpp6-_tKcQnFGd-g3yBy00VpStU",
+    authDomain: "uv-inmobiliaria-1da32.firebaseapp.com",
+    projectId: "uv-inmobiliaria-1da32",
+    storageBucket: "uv-inmobiliaria-1da32.firebasestorage.app",
+    messagingSenderId: "479218790062",
+    appId: "1:479218790062:web:4a10f50e1fef9e3ed8873f"
+  };
+
+  // Inicialización de Firebase 
+  firebase.initializeApp(firebaseConfig);
+
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  const storage = firebase.storage();
+
+  window.firebaseServices = { auth, db, storage };
+</script>
+<script src="panel.js"></script>
+
+</body>
+</html>
